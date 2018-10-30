@@ -7,6 +7,30 @@ player = False
 c_lives = 3
 p_lives = 3
 
+# win / lose function
+def winorlose(status):
+    print("Called win or lose function")
+    print("***************************")
+    print("You", status, "! Would you like to play again?")
+    choice = input("Y / N:")
+
+
+    # reset lives
+    if choice == "Y" or choice == "y":
+        # change global variables
+        global p_lives
+        global c_lives
+        global player
+
+        p_lives = 3
+        c_lives = 3
+        player = False
+    elif choice == "N" or choice == "n":
+        print("You chose to quit!")
+        print("***********************")
+        exit()
+
+
 # set up our loop
 while player is False:
 
@@ -51,21 +75,27 @@ while player is False:
         print("Check your spelling... thats not a valid choice\n")
 
     player = False
-    # check for lives
+
     if p_lives == 0:
-        print("You lost all your lives, play again?\n")
-        player = True
+        winorlose("lose")
     elif c_lives == 0:
-        print("You win! The computer lost all it's lives. Play again?\n")
-        player = True
+        winorlose("won")
+
+    # check for lives
+    # if p_lives == 0:
+    #    print("You lost all your lives, play again?\n")
+    #     player = True
+    # elif c_lives == 0:
+    #     print("You win! The computer lost all it's lives. Play again?\n")
+    #     player = True
         # set player to true to initiate quit prompt
-    if player is True:
-        player = input("yes or no?\n")
-        # if player says they want to continue
+    # if player is True:
+    #     player = input("yes or no?\n")
+    #     # if player says they want to continue
         # set player to false and reset lives
-        if player == "yes" or player == "y":
-            player = False
-            p_lives = 3
-            c_lives = 3
+    #     if player == "yes" or player == "y":
+    #         player = False
+    #         p_lives = 3
+    #         c_lives = 3
         # if player responds with anything else, end game by breaking loop
     
